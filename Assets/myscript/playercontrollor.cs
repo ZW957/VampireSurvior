@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace player
-{ 
+namespace Weapon
+{
+    [DefaultExecutionOrder(200)]
     /// <summary>
     /// player控制器
     /// </summary>
@@ -19,6 +20,8 @@ namespace player
         {
             playerani = GetComponent<Animator>();
             playerrig = GetComponent<Rigidbody2D>();
+            LevelManager.instance.onlevelUP += WhenPlayerLevelUp;
+            
         }
         // Start is called before the first frame update
         void Start()
@@ -35,7 +38,7 @@ namespace player
         {
             float x = Input.GetAxis("Horizontal");
             float y = Input.GetAxis("Vertical");
-            print($"x軸:{x} y軸:{y}");
+            //print($"x軸:{x} y軸:{y}");
             playerrig.velocity = new Vector2(x , y)* speed;
             UpdateAnimaation(x, y);
             Flip(x);
@@ -49,6 +52,14 @@ namespace player
         {
             if (Mathf.Abs(x) < 0.1f) return;
             transform.eulerAngles = new Vector2(0, x > 0 ? 0 : 180);
+        }
+
+        /// <summary>
+        /// 玩家升級時
+        /// </summary>
+        private void WhenPlayerLevelUp()
+        {
+            if (this) enabled = false;
         }
     }
 }

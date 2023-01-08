@@ -29,8 +29,8 @@ MonoBehaviour:
     weaponObjects:
     - speed: {x: 200, y: 10}
       pointSpawn: {x: 4, y: 4, z: 0}
-    - speed: {x: 200, y: 20}
+    - speed: {x: 180, y: 20}
       pointSpawn: {x: 2, y: 2, z: 0}
-    - speed: {x: 200, y: 30}
+    - speed: {x: 210, y: 30}
       pointSpawn: {x: 3, y: 3, z: 0}
   withCharacterDirection: 1

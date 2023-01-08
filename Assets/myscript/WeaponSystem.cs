@@ -37,13 +37,26 @@ namespace Weapon
                 tempWeapon.GetComponent<Rigidbody2D>().AddForce(weaponObjects[i].speed);
 
                 Vector2 speedmove;
-                if (weaponData.withCharacterDirection) speedmove = transform.right * weaponObjects[i].speed;
+                //if (weaponData.withCharacterDirection) speedmove = transform.right * weaponObjects[i].speed
+                if (weaponData.withCharacterDirection) speedmove = transform.TransformDirection(weaponObjects[i].speed);
                 else speedmove = weaponObjects[i].speed;
 
                 tempWeapon.GetComponent<Rigidbody2D>().AddForce(speedmove);
-
+                tempWeapon.AddComponent<WeaponAttack>().attack = weaponLevel.attack;
             }
 
+        }
+
+
+        /// <summary>
+        /// ª±®a¤É¯Å®É
+        /// </summary>
+        private void WhenPlayerLevelUp()
+        {
+            if (this) {
+                CancelInvoke();
+                enabled = false;
+            } 
         }
     }
 
